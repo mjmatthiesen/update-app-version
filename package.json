@@ -1,18 +1,48 @@
 {
 	"name": "updateappversion",
-	"displayName": "updateAppVersion",
-	"description": "Update the manifest's version for AL projects (app.json) to be x.x.x.YYMMDDHHMM",
-	"version": "0.0.1",
+	"displayName": "Update App Version",
+	"description": "Update the manifest's version for AL projects (app.json) to be x.x.x.YYMMDDHHMM (MST)",
+	"author": {
+		"name": "Matthew Matthiesen"
+	},
+	"license": "MIT",
+	"publisher": "mmatthiesen",
+	"version": "1.0.0",
+	"keywords": [
+		"al",
+		"manifest",
+		"version",
+		"nav",
+		"bc365",
+		"business central"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mjmatthiesen/update-app-version"
+	},
+	"bugs": {
+		"url": "https://github.com/mjmatthiesen/update-app-version/issues"
+	},
 	"engines": {
 		"vscode": "^1.31.0"
 	},
 	"categories": [
 		"Other"
 	],
+	"contributes": {
+		"commands": [{
+			"command": "upappver.manifest",
+			"title": "Update manifest version",
+			"category": "AL"
+		},
+		{
+			"command": "upappver.manifestAndBuild",
+			"title": "Update manifest and build",
+			"category": "AL"
+		}]
+	},
 	"activationEvents": [
-		"onCommand:al.publish",
-		"onCommand:al.publishNoDebug",
-		"onCommand:al.package"
+		"onLanguage:al"
 	],
 	"main": "./out/extension.js",
 	"scripts": {

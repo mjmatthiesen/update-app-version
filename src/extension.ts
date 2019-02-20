@@ -6,7 +6,18 @@ import * as fs from 'fs';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
+	context.subscriptions.push(vscode.commands.registerCommand('upappver.manifest', updateManifest));
+	context.subscriptions.push(vscode.commands.registerCommand('upappver.manifestAndBuild', updateManifestAndBuild));
+	//vscode.commands.registerCommand('upappver.package', updateManifest);
+	// vscode.commands.registerCommand('al.package', updateManifest);
+	// vscode.commands.registerCommand('al.publishNoDebug', updateManifest);
+	// vscode.commands.registerCommand('al.publish', updateManifest);
+}
+
+// this method is called when your extension is deactivated
+export function deactivate() {}
+
+function updateManifest() {
 	// workspace must be defined
 	if (vscode.workspace.workspaceFolders) {
 		// app.json should live in root
@@ -28,5 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 }
 
-// this method is called when your extension is deactivated
-export function deactivate() {}
+function updateManifestAndBuild() {
+	updateManifest();
+	vscode.commands.executeCommand('al.package');
+}
